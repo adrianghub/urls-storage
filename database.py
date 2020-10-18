@@ -15,3 +15,13 @@ class Database:
   def insert(self, table, *values):
     self.cursor.execute(f"INSERT INTO {table} VALUES ({','.join(['?' for _ in values])})", values)
     self.connection.commit()
+
+  def fetch_all(self, table, **conditions):
+    # "SELECT * FROM urls WHERE category=?", category
+    values = conditions.values();
+    return self.cursor.execute(
+    f"""SELECT * FROM {table} 
+    WHERE {' and '.join([f'{condition}=?' for condition in conditions])}
+    """,
+    list(values)
+    )

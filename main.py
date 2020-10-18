@@ -26,3 +26,11 @@ if len(argv) > 1 and argv[1] == 'insert':
   url = argv[3]
   db = Database(getenv('DB_NAME'))
   db.insert('urls', None, category, url)
+
+if len(argv) > 1 and argv[1] == 'list':
+  print(f'List of links from category {argv[2]}:')
+  category = argv[2]
+  db = Database(getenv('DB_NAME'))
+  links = db.fetch_all('urls', category=category)
+  for link in links:
+    print(link[2])
