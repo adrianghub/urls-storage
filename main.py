@@ -28,6 +28,10 @@ if len(argv) > 1 and argv[1] == 'insert':
   db.insert('urls', None, category, url)
 
 if len(argv) > 1 and argv[1] == 'list':
+  '''
+  Fetch all records from desired category
+  Usage: python main.py list {category-name}
+  '''
   print(f'List of links from category {argv[2]}:')
   category = argv[2]
   db = Database(getenv('DB_NAME'))
